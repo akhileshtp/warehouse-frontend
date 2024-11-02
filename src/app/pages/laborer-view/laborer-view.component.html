@@ -1,0 +1,27 @@
+<div class=" mt-20 task-list-container">
+    <h1 class="text-xl font-bold text-center">Assigned Tasks</h1>
+
+    <!-- Using ng-container to separate *ngFor and *ngIf -->
+    <ng-container *ngFor="let task of tasks">
+      <div *ngIf="task.isVisible" class="task-item flex items-center justify-between p-4 bg-white shadow rounded">
+        <div>
+          <p><span class="font-semibold">Task Type:</span> {{ task.task }}</p>
+          <p><span class="font-semibold">Location:</span> {{ task.warehouse }}, Block {{ task.block }}, Stack {{ task.stack }}</p>
+          <p><span class="font-semibold">Date Assigned:</span> {{ task.date | date:'dd-MMM-yy' }}</p>
+        </div>
+        
+        <div class="task-actions flex items-center space-x-4">
+          <!-- Toggle Status Switch -->
+          <label class="relative inline-block w-14 h-8 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" [checked]="task.status === 'Completed'" (change)="toggleStatus(task)">
+            <span class="absolute inset-0 rounded-full bg-red-500 peer-checked:bg-green-500 transition duration-300"></span>
+            <span class="absolute left-1 bottom-1 w-6 h-6 bg-white rounded-full transition-transform duration-300 transform peer-checked:translate-x-6"></span>
+          </label>
+          <p class="status-text text-lg font-bold" [ngClass]="task.status === 'Completed' ? 'text-green-500' : 'text-red-500'">{{ task.status }}</p>
+          
+          <!-- Close Task Button -->
+          <button (click)="closeTask(task)" class="close-button text-gray-500 hover:text-red-500 transition">Close</button>
+        </div>
+      </div>
+    </ng-container>
+</div>

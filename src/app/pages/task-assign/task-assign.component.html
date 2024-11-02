@@ -1,0 +1,56 @@
+<body class="bg-gray-100 flex items-center justify-center min-h-screen ">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md mt-6">
+        <h1 class="text-2xl font-bold text-center mb-6">QC Task Assignment</h1>
+
+        <form [formGroup]="taskForm" (ngSubmit)="task()" class="space-y-4">
+            <!-- Godown -->
+            <div>
+                <select formControlName="warehouse" required 
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="" disabled selected>Select Godown</option>
+                    <option *ngFor="let item of godownArray" [value]="item">{{ item }}</option>
+                </select>
+            </div>
+
+            <!-- Block -->
+            <div>
+                <select formControlName="block" required 
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="" disabled selected>Select Block</option>
+                    <option *ngFor="let item of blockArray" [value]="item">{{ item }}</option>
+                </select>
+            </div>
+
+            <!-- Stack -->
+            <div>
+                <select formControlName="stack" required 
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="" disabled selected>Select Stack</option>
+                    <option *ngFor="let item of stackArray" [value]="item">{{ item }}</option>
+                </select>
+            </div>
+
+            <!-- Task -->
+            <div>
+                <select formControlName="task" required 
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="" disabled selected>Select Task</option>
+                    <option *ngFor="let item of taskArray" [value]="item">{{ item }}</option>
+                </select>
+            </div>
+
+            <!-- Date -->
+            <div>
+                <input type="date" formControlName="date" required 
+                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                       placeholder="Select Date">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" 
+            class="w-full bg-indigo-500 text-white font-bold py-2 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                Assign Task
+            </button>
+        </form>
+    </div>
+</body>

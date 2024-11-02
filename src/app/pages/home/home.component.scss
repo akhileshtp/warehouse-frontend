@@ -1,0 +1,21 @@
+.overflow-y-auto {
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  .max-h-60 {
+    max-height: 15rem; /* Adjust height as needed */
+  }
+  
+  /* Ensure the header background matches */
+  table thead th {
+    position: sticky; /* Make the header sticky */
+    top: 0; /* Stick to the top of the container */
+    z-index: 10; /* Ensure it appears above the scrolling body */
+    background-color: #4B5563; /* Same as your header's background color */
+  }
+  
+  /* Optional: Style for the header */
+  table thead th {
+    color: white; /* Text color for header */
+  }
+  

@@ -1,0 +1,17 @@
+.task-list-container {
+    padding: 1rem;
+  }
+  
+  .task-item {
+    margin-bottom: 1rem;
+  }
+  
+  .close-button {
+    @apply text-gray-500 hover:text-red-500 transition;
+  }
+  
+  .status-text {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
