@@ -1,4 +1,4 @@
 export const apiUrls = {
-  authServiceApi: 'http://localhost:8800/api/auth/',
-  taskServiceApi: 'http://localhost:8800/api/task/'
+  authServiceApi: 'https://warehouse-backend-b5zc.onrender.com/api/auth/',
+  taskServiceApi: 'https://warehouse-backend-b5zc.onrender.com/api/task/'
 }

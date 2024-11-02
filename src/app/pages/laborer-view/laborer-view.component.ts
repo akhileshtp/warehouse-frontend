@@ -32,7 +32,7 @@ export class LaborerViewComponent implements OnInit {
 
   loadTasks(): void {
     // Fetch tasks from the server and filter for only pending tasks
-    this.http.get<Task[]>('http://localhost:8800/api/task/getAll')
+    this.http.get<Task[]>('https://warehouse-backend-b5zc.onrender.com/api/task/getAll')
       .subscribe({
         next: (tasks) => {
           this.tasks = tasks
@@ -52,7 +52,7 @@ export class LaborerViewComponent implements OnInit {
   toggleStatus(task: Task): void {
     const newStatus = task.status === 'Pending' ? 'Completed' : 'Pending';
 
-    this.http.put(`http://localhost:8800/api/task/update/${task._id}`, { status: newStatus })
+    this.http.put(`https://warehouse-backend-b5zc.onrender.com/api/task/update/${task._id}`, { status: newStatus })
       .subscribe({
         next: () => {
           task.status = newStatus;
