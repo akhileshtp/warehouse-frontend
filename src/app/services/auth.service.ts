@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   loginService(loginObj: any){
-    return this.http.post<any>(`${apiUrls.authServiceApi}api/auth/login`, loginObj, {withCredentials: true});
+    return this.http.post<any>(`${apiUrls.authServiceApi}/api/auth/login`, loginObj, {withCredentials: true});
   }
 
   sendEmailService(email: string){
