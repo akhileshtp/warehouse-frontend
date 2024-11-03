@@ -1,20 +1,3 @@
-// import { Injectable, inject } from '@angular/core';
-// import {HttpClient} from '@angular/common/http'
-// import { apiUrls } from '../api.urls';
-// import { BehaviorSubject } from 'rxjs';
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class TaskService {
-//   http = inject(HttpClient);
-  
-
-//   assignTask(createObj: any){
-//     return this.http.post<any>(`${apiUrls.taskServiceApi}create`, createObj);
-//   }
-
-//  }
-
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { apiUrls } from '../api.urls';
@@ -39,12 +22,12 @@ export class TaskService {
   
   // Method to assign a task
   assignTask(createObj: any): Observable<any> {
-    return this.http.post<any>(`${apiUrls.taskServiceApi}/create`, createObj);
+    return this.http.post<any>(`${apiUrls.taskServiceApi}/api/task/create`, createObj);
   }
 
   // Method to get a list of all tasks
   fetchTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(`${apiUrls.taskServiceApi}/getAll`);
+    return this.http.get<Task[]>(`${apiUrls.taskServiceApi}/api/task/getAll`);
   }
 
   // Method to get task overview (summary counts for each task type)

@@ -12,16 +12,16 @@ export class AuthService {
   isLoggedIn$ = new BehaviorSubject<boolean>(false);
 
   registerService(registerObj: any){
-    return this.http.post<any>(`${apiUrls.authServiceApi}register`, registerObj);
+    return this.http.post<any>(`${apiUrls.authServiceApi}/api/auth/register`, registerObj);
   }
 
   
   registerAdminService(registerObj: any) {
-    return this.http.post<any>(`${apiUrls.authServiceApi}register-admin`, registerObj);
+    return this.http.post<any>(`${apiUrls.authServiceApi}/api/auth/register-admin`, registerObj);
   }
 
   loginService(loginObj: any){
-    return this.http.post<any>(`${apiUrls.authServiceApi}login`, loginObj, {withCredentials: true});
+    return this.http.post<any>(`${apiUrls.authServiceApi}api/auth/login`, loginObj, {withCredentials: true});
   }
 
   sendEmailService(email: string){
