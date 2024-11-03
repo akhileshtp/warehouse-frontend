@@ -1,7 +1,7 @@
 <!-- Main Layout -->
-<div class="flex">
+<div class="flex flex-col md:flex-row">
   <!-- Sidebar Navigation -->
-  <nav class="bg-gray-800 text-white w-64 flex flex-col py-4 fixed h-full">
+  <nav class="bg-gray-800 text-white w-full md:w-64 flex flex-col py-4 fixed md:static h-full z-10">
     <h2 class="text-center text-2xl mb-8">QC Dashboard</h2>
     <ul class="list-none px-4">
       <li class="mb-4">
@@ -11,62 +11,58 @@
         <a [routerLink]="['/laborer-view']" class="block p-2 rounded hover:bg-indigo-500">Laborer View</a>
       </li>
       <li class="mb-4">
-        <a (click)="navigateToAdminRegister()" class="block p-2 rounded hover:bg-indigo-500" style="cursor: pointer;">Staff registration</a> 
+        <a (click)="navigateToAdminRegister()" class="block p-2 rounded hover:bg-indigo-500 cursor-pointer">Staff Registration</a>
       </li>
-      <!-- <li class="mb-4">
-        <a href="#" class="block p-2 rounded hover:bg-indigo-500">Reports</a>
-      </li>
-      <li class="mb-4">
-        <a href="#" class="block p-2 rounded hover:bg-indigo-500">Settings</a>
-      </li> -->
     </ul>
   </nav>
 
   <!-- Main Content Area -->
-<div class=" mt-20 ml-64 p-6 flex-grow">
-  <h2 class="text-left text-2xl mb-5">Task Overview</h2>
-  <div class="grid grid-cols-3 gap-6 mb-6">
-    <div class="bg-green-600 text-white p-4 rounded shadow-lg transition-transform transform hover:scale-105">
-      <h3 class="text-lg font-semibold">Fumigation</h3>
-      <p>{{ taskOverview.fumigation.pending }} task(s) pending</p>
-      <p>{{ taskOverview.fumigation.completed }} task(s) completed</p>
+  <div class="mt-20 md:mt-0 md:ml-64 p-6 flex-grow">
+    <h2 class="text-left text-2xl mb-5">Task Overview</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+      <div class="bg-green-600 text-white p-4 rounded shadow-lg transition-transform transform hover:scale-105">
+        <h3 class="text-lg font-semibold">Fumigation</h3>
+        <p>{{ taskOverview.fumigation.pending }} task(s) pending</p>
+        <p>{{ taskOverview.fumigation.completed }} task(s) completed</p>
+      </div>
+      <div class="bg-blue-600 text-white p-4 rounded shadow-lg transition-transform transform hover:scale-105">
+        <h3 class="text-lg font-semibold">Degasing</h3>
+        <p>{{ taskOverview.degasing.pending }} task(s) pending</p>
+        <p>{{ taskOverview.degasing.completed }} task(s) completed</p>
+      </div>
+      <div class="bg-yellow-600 text-white p-4 rounded shadow-lg transition-transform transform hover:scale-105">
+        <h3 class="text-lg font-semibold">Spraying</h3>
+        <p>{{ taskOverview.spraying.pending }} task(s) pending</p>
+        <p>{{ taskOverview.spraying.completed }} task(s) completed</p>
+      </div>
     </div>
-    <div class="bg-blue-600 text-white p-4 rounded shadow-lg transition-transform transform hover:scale-105">
-      <h3 class="text-lg font-semibold">Degasing</h3>
-      <p>{{ taskOverview.degasing.pending }} task(s) pending</p>
-      <p>{{ taskOverview.degasing.completed }} task(s) completed</p>
+
+    <h2 class="text-2xl font-semibold mb-4">Task History</h2>
+
+    <div class="overflow-hidden">
+      <div class="bg-gray-800 text-white">
+        <table class="min-w-full bg-white shadow-md rounded mb-4">
+          <thead>
+            <tr>
+              <th class="py-3 px-4">Task</th>
+              <th class="py-3 px-4">Date</th>
+              <th class="py-3 px-4">Status</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <div class="overflow-y-auto max-h-60"> <!-- Container for scrolling body -->
+        <table class="min-w-full bg-white shadow-md rounded mb-4">
+          <tbody>
+            <tr *ngFor="let task of tasks" class="hover:bg-gray-100">
+              <td class="py-3 px-4">{{ task.task }} (Block {{ task.block }}, Stack {{ task.stack }})</td>
+              <td class="py-3 px-4">{{ task.date | date }}</td>
+              <td class="py-3 px-4">{{ task.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="bg-yellow-600 text-white p-4 rounded shadow-lg transition-transform transform hover:scale-105">
-      <h3 class="text-lg font-semibold">Spraying</h3>
-      <p>{{ taskOverview.spraying.pending }} task(s) pending</p>
-      <p>{{ taskOverview.spraying.completed }} task(s) completed</p>
-    </div>
-  </div>
-
-  <h2 class="text-2xl font-semibold mb-4">Task History</h2>
-
-<div class="overflow-hidden"> <!-- Container for the whole table -->
-  <div class="bg-gray-800 text-white">
-    <table class="min-w-full bg-white shadow-md rounded mb-4">
-      <thead>
-        <tr>
-          <th class="py-3 px-4">Task</th>
-          <th class="py-3 px-4">Date</th>
-          <th class="py-3 px-4">Status</th>
-        </tr>
-      </thead>
-    </table>
-   </div>
-
-  <div class="overflow-y-auto max-h-60"> <!-- Container for scrolling body -->
-    <table class="min-w-full bg-white shadow-md rounded mb-4">
-      <tbody>
-        <tr *ngFor="let task of tasks" class="hover:bg-gray-100">
-          <td class="py-3 px-4">{{ task.task }} (Block {{ task.block }}, Stack {{ task.stack }})</td>
-          <td class="py-3 px-4">{{ task.date | date }}</td>
-          <td class="py-3 px-4">{{ task.status }}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>
