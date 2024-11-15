@@ -1,8 +1,16 @@
-<nav class="w-full flex justify-between items-center p-5 bg-indigo-500 shadow-lg fixed top-0 z-50">
+<nav class="w-full flex justify-between items-center p-1 bg-indigo-500 shadow-lg fixed top-0 z-10">
+  <!-- Logo Section -->
   <div class="logo">
-    <span class="text-gray-200 text-4xl flex justify-start items-center">WAREHOUSE QUALITY CONTROL</span>
+    <span class="text-gray-200 text-3xl flex justify-start items-center">QC-P</span>
   </div>
-  <div class="nav-items">
+
+  <!-- Hamburger Icon for Small Screens -->
+  <button class="text-gray-200 text-2xl lg:hidden" (click)="isMenuOpen = !isMenuOpen">
+    &#9776; <!-- Hamburger icon -->
+  </button>
+
+  <!-- Menu Items for Large Screens & Toggle for Small Screens -->
+  <div class="nav-items lg:flex" [ngClass]="{'hidden': !isMenuOpen}">
     <ng-container *ngIf="!isLoggedIn">
       <span routerLink="/login"
         class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Login</span>
@@ -11,9 +19,18 @@
     </ng-container>
 
     <ng-container *ngIf="isLoggedIn">
-      <span routerLink="/login"
-      (click)="logout()"
-        class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Logout</span>
+
+      <span><a [routerLink]="['/laborer-view']"
+        class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">laborer-view</a></span>
+
+      <span><a [routerLink]="['/task-assign']"
+        class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Assign Tasks</a></span>
+
+      <span (click)="navigateToAdminRegister()" 
+        class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Staff registration</span>
+
+      <span (click)="logout()" 
+        class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Logout</span>
     </ng-container>
   </div>
 </nav>
