@@ -10,27 +10,29 @@
   </button>
 
   <!-- Menu Items for Large Screens & Toggle for Small Screens -->
-  <div class="nav-items lg:flex" [ngClass]="{'hidden': !isMenuOpen}">
+  <div class="nav-items lg:flex" [ngClass]="{ 'hidden': !isMenuOpen }">
+    <ng-container *ngIf="isLoggedIn">
+      
+        <span *ngIf="isAdmin" routerLink="/laborer-view"
+          class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Laborer
+          View</span>
+        <span *ngIf="isAdmin" routerLink="/home"
+          class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Home</span>
+        <span *ngIf="isAdmin" routerLink="/task-assign"
+          class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Assign
+          Tasks</span>
+        <span *ngIf="isAdmin" (click)="navigateToAdminRegister()"
+          class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Staff
+          Registration</span>
+      
+      <span routerLink="/login" (click)="logout()"
+        class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Logout</span>
+    </ng-container>
     <ng-container *ngIf="!isLoggedIn">
       <span routerLink="/login"
         class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Login</span>
       <span routerLink="/register"
         class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Register</span>
-    </ng-container>
-
-    <ng-container *ngIf="isLoggedIn">
-
-      <span><a [routerLink]="['/laborer-view']"
-        class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">laborer-view</a></span>
-
-      <span><a [routerLink]="['/task-assign']"
-        class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Assign Tasks</a></span>
-
-      <span (click)="navigateToAdminRegister()" 
-        class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Staff registration</span>
-
-      <span (click)="logout()" 
-        class="text-l cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Logout</span>
     </ng-container>
   </div>
 </nav>

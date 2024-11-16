@@ -35,4 +35,18 @@ export class AuthService {
   isLoggedIn(){
     return !!localStorage.getItem("user_id");
   }
+
+  isAdmin(): boolean {
+    // Check if the 'Admin' role exists in localStorage
+    const roles = JSON.parse(localStorage.getItem('roles') || '[]');
+    return roles.includes('Admin');
+    console.log(roles);
+  }
+      
+  logout(): void {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user_id');
+    this.isLoggedIn$.next(false); // Notify logout state
+  }
+
 }

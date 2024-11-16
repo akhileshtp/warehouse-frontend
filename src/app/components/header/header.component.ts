@@ -2,36 +2,44 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import HomeComponent from 'src/app/pages/home/home.component';
+
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule,HomeComponent],
+  imports: [CommonModule, RouterModule],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router) { } 
-
-
   authService = inject(AuthService);
-  isLoggedIn: boolean = false;
-  isMenuOpen = false;
+  isLoggedIn= false;
+  isAdmin = false;
+  isMenuOpen= false;
+
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
-    this.authService.isLoggedIn$.subscribe(res => {
-      this.isLoggedIn = this.authService.isLoggedIn();
+    // Subscribe to reactive auth state
+    this.authService.isLoggedIn$.subscribe((loggedIn) => {
+      this.isLoggedIn = loggedIn;
+      if (loggedIn) {
+        this.isAdmin = this.authService.isAdmin(); // Check if the user is an admin
+      } else {
+        this.isAdmin = false; // Reset admin state if logged out
+      }
     });
   }
 
-  logout() {
-    localStorage.removeItem("user_id");
-    this.authService.isLoggedIn$.next(false);
+ logout(): void {
+    // Clear session and reset states
+    this.authService.logout();
+    this.isLoggedIn = false;
+    this.isAdmin = false;
+    this.router.navigate(['/login']);
   }
 
-  navigateToAdminRegister() {
+  navigateToAdminRegister(): void {
     this.router.navigate(['/register'], { queryParams: { isAdmin: true } });
   }
-
-
 }
