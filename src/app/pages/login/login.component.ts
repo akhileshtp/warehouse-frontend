@@ -31,6 +31,7 @@ export default class LoginComponent {
         alert("Logged in Successfully!!");
 
         // Store user ID and token 
+        localStorage.setItem("roles", JSON.stringify(res.data.roles));
         localStorage.setItem("user_id", res.data._id);
         if (res.token) {
           localStorage.setItem("auth_token", res.token);

@@ -40,7 +40,7 @@ export class AuthService {
     // Check if the 'Admin' role exists in localStorage
     const roles = JSON.parse(localStorage.getItem('roles') || '[]');
     return roles.includes('Admin');
-    console.log(roles);
+    
   }
       
   logout(): void {
